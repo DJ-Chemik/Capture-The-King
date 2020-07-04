@@ -15,38 +15,50 @@ const GamePage = () => {
 
     const drawCardsInBoard = () => {
         const cards: CardProps[] = [];
+        let numberOf1 = numberOfCardValue1;
+        let numberOf2 = numberOfCardValue2;
+        let numberOf3 = numberOfCardValue3;
+        let numberOf4 = numberOfCardValue4;
+        let numberOf5 = numberOfCardValue5;
+        let numberOfK = numberOfCardValueK;
         for (let i = 0; i < 25; i++) {
             const randomValue = Math.random();
-            if (randomValue < 1/6 && numberOfCardValue1 > 0) {
+            if (randomValue < 1/6 && numberOf1 > 0) {
+                console.log(i + ": 1");
                 cards.push({
                     value: CardValue.V1
                 });
-                setNumberOfCardValue1(numberOfCardValue1-1);
-            }else if (randomValue < 2/6 && numberOfCardValue2 > 0) {
+                numberOf1--;
+            }else if (randomValue < 2/6 && numberOf2 > 0) {
+                console.log(i + ": 2");
                 cards.push({
                     value: CardValue.V2
                 });
-                setNumberOfCardValue2(numberOfCardValue2-1);
-            }else if (randomValue < 3/6 && numberOfCardValue3 > 0) {
+                numberOf2--;
+            }else if (randomValue < 3/6 && numberOf3 > 0) {
+                console.log(i + ": 3");
                 cards.push({
                     value: CardValue.V3
                 });
-                setNumberOfCardValue3(numberOfCardValue3-1);
-            }else if (randomValue < 4/6 && numberOfCardValue4 > 0) {
+                numberOf3--;
+            }else if (randomValue < 4/6 && numberOf4 > 0) {
+                console.log(i + ": 4");
                 cards.push({
                     value: CardValue.V4
                 });
-                setNumberOfCardValue4(numberOfCardValue4-1);
-            }else if (randomValue < 5/6 && numberOfCardValue5 > 0) {
+                numberOf4--;
+            }else if (randomValue < 5/6 && numberOf5 > 0) {
+                console.log(i + ": 5");
                 cards.push({
                     value: CardValue.V5
                 });
-                setNumberOfCardValue5(numberOfCardValue5-1);
-            }else if (randomValue < 6/6 && numberOfCardValueK > 0) {
+                numberOf5--;
+            }else if (randomValue < 6/6 && numberOfK > 0) {
+                console.log(i + ": K");
                 cards.push({
                     value: CardValue.K
                 });
-                setNumberOfCardValueK(numberOfCardValueK-1);
+                numberOfK--;
             }else{
                 i--;
             }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Colors, CardValue } from './PredefinedValues';
 
 export interface CardProps {
@@ -8,11 +8,13 @@ export interface CardProps {
 }
 
 const Card = (props: CardProps) => {
-  return (
-        <div style={{backgroundColor: "#aabb44", height: "2rem", width: "3rem", margin: "2px"}}>
-            {props.value}
-        </div>
-  );
+    const [color, setColor] = useState("#aabb44");
+
+    return (
+            <div style={{backgroundColor: color, height: "2rem", width: "3rem", margin: "2px"}} onClick={() => {setColor("#3399aa")}}>
+                {props.value}
+            </div>
+    );
 }
 
 export default Card;
