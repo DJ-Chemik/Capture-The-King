@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Card, { CardProps } from '../Card';
 import { CardValue } from '../PredefinedValues';
+import RowWithCards from './RowWithCards';
 
 const GamePage = () => {
     const [boardCards, setBoardCards] = useState<CardProps[]>();
+    const [cardTable, setCardTable] = useState<JSX.Element[]>();
     const [numberOfCardValue1, setNumberOfCardValue1] = useState<number>(7);
     const [numberOfCardValue2, setNumberOfCardValue2] = useState<number>(4);
     const [numberOfCardValue3, setNumberOfCardValue3] = useState<number>(5);
@@ -56,12 +58,41 @@ const GamePage = () => {
         setBoardCards(drawCardsInBoard());
     }, [])
 
-    useEffect(()=>{
-        console.log(boardCards);
-    })
+    useEffect(() => {
+        const tmp = renderCardsInTable();
+        if(tmp){
+            setCardTable(tmp);
+        }
+    }, [boardCards])
+
+    const renderCardsInTable = () => {
+        const cardRows = [];
+        if(boardCards){
+            for (let i = 0; i < 25; i+=5) {
+                const row = []
+                row.push(boardCards[i]);
+                row.push(boardCards[i+1]);
+                row.push(boardCards[i+2]);
+                row.push(boardCards[i+3]);
+                row.push(boardCards[i+4]);
+                cardRows.push(row);
+            }
+        }
+        
+        return(
+            cardRows.map( (row) => {
+                return(
+                    <RowWithCards
+                        cards={row}
+                    />
+                )
+            })
+        )
+    }
 
     return (
-    <div>
+    <div style={{textAlign: "center"}}>
+        {cardTable}
     </div>
   );
 }
