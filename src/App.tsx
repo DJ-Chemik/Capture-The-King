@@ -1,20 +1,19 @@
 import React from 'react';
 import './App.css';
-import InfoPage from './info-pane/InfoPage';
+import InfoPane from './info-pane/InfoPane';
 import UserCardsPane from './user-cards-pane/UserCardsPane';
 import ResultPane from './result-pane/ResultPane';
-import GamePage from './game-pane/GamePage';
-import Card from './Card';
-import {CardValue} from './PredefinedValues'
+import GamePane from './game-pane/GamePane';
+import { AppWrapper } from './StyledComponents';
 
 function App() {
   return (
-    <div className="App">
-      <GamePage/>
-      <InfoPage/>
+    <AppWrapper>
+      <GamePane/>
+      <InfoPane/>
       <UserCardsPane/>
       <ResultPane/>
-    </div>
+    </AppWrapper>
   );
 }
 

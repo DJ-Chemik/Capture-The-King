@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Card, { CardProps } from '../Card';
 import { CardValue } from '../PredefinedValues';
 import RowWithCards from './RowWithCards';
+import { GamePaneWrapper } from '../StyledComponents';
 
-const GamePage = () => {
+const GamePane = () => {
     const [boardCards, setBoardCards] = useState<CardProps[]>();
     const [cardTable, setCardTable] = useState<JSX.Element[]>();
     const [numberOfCardValue1, setNumberOfCardValue1] = useState<number>(7);
@@ -103,10 +104,10 @@ const GamePage = () => {
     }
 
     return (
-    <div style={{textAlign: "center"}}>
+    <GamePaneWrapper>
         {cardTable}
-    </div>
+    </GamePaneWrapper>
   );
 }
 
-export default GamePage;
+export default GamePane;

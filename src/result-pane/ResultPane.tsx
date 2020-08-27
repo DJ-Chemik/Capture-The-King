@@ -1,10 +1,11 @@
 import React from 'react';
+import { ResultPaneWrapper } from '../StyledComponents';
 
 const ResultPane = () => {
   return (
-    <div>
-     
-    </div>
+    <ResultPaneWrapper>
+      Result Pane
+    </ResultPaneWrapper>
   );
 }
 

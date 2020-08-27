@@ -1,10 +1,11 @@
 import React from 'react';
+import { UserCardsPaneWrapper } from '../StyledComponents';
 
 const UserCardsPane = () => {
   return (
-    <div>
-     
-    </div>
+    <UserCardsPaneWrapper>
+      User Cards Pane
+    </UserCardsPaneWrapper>
   );
 }
 
