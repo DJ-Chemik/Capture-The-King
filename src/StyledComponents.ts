@@ -47,7 +47,7 @@ export interface CardWrapperProps {
 };
 
 export const CardWrapper = styled.div<CardWrapperProps>`
-    background-color: ${props => props.color}; 
+    background-color: ${props => props.color};
     height: 3.5rem; 
     width: 5rem; 
     margin: 2px;

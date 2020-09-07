@@ -6,27 +6,26 @@ export interface RowWithCardsProps {
 }
 
 const RowWithCards = (props: RowWithCardsProps) => {
-    const [row, setRow] = useState<JSX.Element[]>();
 
     const renderCardsInRow = () => {
         return(
             props.cards.map( (card) => {
                 return(
                     <Card
+                       id={card.id}
                        value={card.value} 
+                       isVisible={card.isVisible}
+                       onClick={card.onClick}
+                       color={card.color}
                     />
                 )
             })
         )
     }
 
-    useEffect( () => {
-        setRow(renderCardsInRow());
-    }, [props.cards])
-
     return (
             <div style={{display: "flex"}}>
-                {row}
+                {props.cards && renderCardsInRow()}
             </div>
     );
 }

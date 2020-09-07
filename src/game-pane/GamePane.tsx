@@ -3,10 +3,10 @@ import Card, { CardProps } from '../Card';
 import { CardValue } from '../PredefinedValues';
 import RowWithCards from './RowWithCards';
 import { GamePaneWrapper } from '../StyledComponents';
+import CardsTable from './CardsTable';
 
 const GamePane = () => {
     const [boardCards, setBoardCards] = useState<CardProps[]>();
-    const [cardTable, setCardTable] = useState<JSX.Element[]>();
     const [numberOfCardValue1, setNumberOfCardValue1] = useState<number>(7);
     const [numberOfCardValue2, setNumberOfCardValue2] = useState<number>(4);
     const [numberOfCardValue3, setNumberOfCardValue3] = useState<number>(5);
@@ -14,7 +14,11 @@ const GamePane = () => {
     const [numberOfCardValue5, setNumberOfCardValue5] = useState<number>(3);
     const [numberOfCardValueK, setNumberOfCardValueK] = useState<number>(1);
 
-    const drawCardsInBoard = () => {
+    const handleClickCard = (id: number) => {
+        //TODO
+    };
+
+    const randomCardsValues = () => {
         const cards: CardProps[] = [];
         let numberOf1 = numberOfCardValue1;
         let numberOf2 = numberOfCardValue2;
@@ -27,37 +31,55 @@ const GamePane = () => {
             if (randomValue < 1/6 && numberOf1 > 0) {
                 console.log(i + ": 1");
                 cards.push({
-                    value: CardValue.V1
+                    id: i,
+                    value: CardValue.V1,
+                    isVisible: false,
+                    onClick: handleClickCard,
                 });
                 numberOf1--;
             }else if (randomValue < 2/6 && numberOf2 > 0) {
                 console.log(i + ": 2");
                 cards.push({
-                    value: CardValue.V2
+                    id: i,
+                    value: CardValue.V2,
+                    isVisible: false,
+                    onClick: handleClickCard,
                 });
                 numberOf2--;
             }else if (randomValue < 3/6 && numberOf3 > 0) {
                 console.log(i + ": 3");
                 cards.push({
-                    value: CardValue.V3
+                    id: i,
+                    value: CardValue.V3,
+                    isVisible: false,
+                    onClick: handleClickCard,
                 });
                 numberOf3--;
             }else if (randomValue < 4/6 && numberOf4 > 0) {
                 console.log(i + ": 4");
                 cards.push({
-                    value: CardValue.V4
+                    id: i,
+                    value: CardValue.V4,
+                    isVisible: false,
+                    onClick: handleClickCard,
                 });
                 numberOf4--;
             }else if (randomValue < 5/6 && numberOf5 > 0) {
                 console.log(i + ": 5");
                 cards.push({
-                    value: CardValue.V5
+                    id: i,
+                    value: CardValue.V5,
+                    isVisible: false,
+                    onClick: handleClickCard,
                 });
                 numberOf5--;
             }else if (randomValue < 6/6 && numberOfK > 0) {
                 console.log(i + ": K");
                 cards.push({
-                    value: CardValue.K
+                    id: i,
+                    value: CardValue.K,
+                    isVisible: false,
+                    onClick: handleClickCard,
                 });
                 numberOfK--;
             }else{
@@ -68,44 +90,13 @@ const GamePane = () => {
     }
 
     useEffect(() => {
-        setBoardCards(drawCardsInBoard());
+        setBoardCards(randomCardsValues());
     }, [])
 
-    useEffect(() => {
-        const tmp = renderCardsInTable();
-        if(tmp){
-            setCardTable(tmp);
-        }
-    }, [boardCards])
-
-    const renderCardsInTable = () => {
-        const cardRows = [];
-        if(boardCards){
-            for (let i = 0; i < 25; i+=5) {
-                const row = []
-                row.push(boardCards[i]);
-                row.push(boardCards[i+1]);
-                row.push(boardCards[i+2]);
-                row.push(boardCards[i+3]);
-                row.push(boardCards[i+4]);
-                cardRows.push(row);
-            }
-        }
-        
-        return(
-            cardRows.map( (row) => {
-                return(
-                    <RowWithCards
-                        cards={row}
-                    />
-                )
-            })
-        )
-    }
 
     return (
     <GamePaneWrapper>
-        {cardTable}
+        {boardCards && <CardsTable cards={boardCards}/>}
     </GamePaneWrapper>
   );
 }
